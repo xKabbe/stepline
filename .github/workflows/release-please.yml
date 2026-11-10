@@ -1,0 +1,16 @@
+name: stepline Release Please 🚀
+run-name: ${{ github.actor }} triggered the release-please workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-please-placeholder:
+    name: Release Please Placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release-please workflow not implemented yet
+        run: echo "Release PR and tagging will be implemented in a future PR."

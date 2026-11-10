@@ -1,0 +1,16 @@
+name: stepline Documentation 📚
+run-name: ${{ github.actor }} triggered the documentation workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docs-placeholder:
+    name: Documentation Placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - name: Documentation workflow not implemented yet
+        run: echo "MkDocs build and GitHub Pages deployment will be implemented in a future PR."

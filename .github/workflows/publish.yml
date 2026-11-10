@@ -1,0 +1,16 @@
+name: stepline Publish 📦
+run-name: ${{ github.actor }} triggered the publish workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish-placeholder:
+    name: Publish Placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish workflow not implemented yet
+        run: echo "Build and PyPI upload via Trusted Publishing will be implemented in a future PR."

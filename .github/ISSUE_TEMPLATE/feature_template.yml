@@ -1,0 +1,40 @@
+name: "💡 Feature Request"
+description: "Request a new feature to be added"
+title: "<title>"
+labels: [
+  "enhancement"
+]
+body:
+  # Area
+  - type: dropdown
+    id: area
+    attributes:
+      label: "Area"
+      options:
+        - "Assertions"
+        - "Steps"
+        - "Metadata / spec export"
+        - "Console output / logging"
+        - "CLI"
+        - "Documentation"
+        - "Other"
+    validations:
+      required: true
+  # Description
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      placeholder: "Short and explicit description..."
+      description: "Please enter an explicit description."
+    validations:
+      required: true
+  # Code Proposal
+  - type: textarea
+    id: proposal
+    attributes:
+      label: "Proposed API or behavior"
+      description: "How would you like to write it? Code says more than words."
+      render: python
+      placeholder: |
+        assert_that(response).has_json_path("data.items[0].id")

@@ -1,0 +1,25 @@
+name: "📓 Documentation"
+description: "Suggest edits for the project documentation"
+title: "<title>"
+labels: [
+  "documentation"
+]
+body:
+  # Description
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      placeholder: "Short and explicit description..."
+      description: "Please enter an explicit description."
+    validations:
+      required: true
+  # Additional Context
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional Context"
+      placeholder: "![DESCRIPTION](LINK.png)"
+      description: "Add additional context (e.g links, images or logs)."
+    validations:
+      required: false

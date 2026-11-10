@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "🔒 Report a security vulnerability"
+    url: https://github.com/xKabbe/stepline/security/advisories/new
+    about: "Please report security issues privately, never in a public issue."
+  - name: 🙋 Ask questions via GitHub (preferred)
+    url: https://github.com/xKabbe/stepline/discussions
+    about: Ask questions about the project or how you can contribute to the project yourself

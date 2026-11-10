@@ -1,0 +1,83 @@
+name: "🐛 Bug Report"
+description: "Report a bug"
+title: "<title>"
+labels: [
+  "bug"
+]
+body:
+  # Description
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      placeholder: "Short and explicit description..."
+      description: "Please enter an explicit description."
+    validations:
+      required: true
+  # Reproduction
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "Minimal reproduction"
+      description: "The smallest test file or snippet that shows the problem."
+      render: python
+      placeholder: |
+        from stepline import assert_that, step
+
+        def test_example():
+            with step("Do something"):
+                assert_that(1).is_positive()
+    validations:
+      required: true
+  # Screenshots
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots"
+      placeholder: "![DESCRIPTION](LINK.png)"
+      description: "If applicable, add screenshots to help explain your problem."
+    validations:
+      required: false
+  # Logs
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Logs"
+      description: "Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks."
+    validations:
+      required: false
+  # OS
+  - type: dropdown
+    id: os
+    attributes:
+      label: "OS"
+      description: "What is the impacted environment?"
+      multiple: true
+      options:
+        - "Windows"
+        - "Linux"
+        - "Mac"
+    validations:
+      required: false
+  # Executed Command
+  - type: input
+    id: command
+    attributes:
+      label: "Command"
+      placeholder: "pytest tests/test_example.py -v"
+  # Version (stepline)
+  - type: input
+    id: stepline_version
+    attributes:
+      label: "stepline version"
+      placeholder: "output of `stepline --version` or `pip show stepline`"
+    validations:
+      required: true
+  # Version (python)
+  - type: input
+    id: python_version
+    attributes:
+      label: "Python and pytest version"
+      placeholder: "Python 3.14.1, pytest 9.0.2"
+    validations:
+      required: true

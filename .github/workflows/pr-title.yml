@@ -1,0 +1,16 @@
+name: stepline PR Title 🏷️
+run-name: ${{ github.actor }} triggered the PR title workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pr-title-placeholder:
+    name: PR Title Placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR title workflow not implemented yet
+        run: echo "Conventional Commits check for PR titles will be implemented in a future PR."
