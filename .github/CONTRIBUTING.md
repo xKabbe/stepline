@@ -16,19 +16,20 @@ contributions are all welcome.
 stepline uses [uv](https://docs.astral.sh/uv/) for everything.
 
 ```bash
-  git clone git@github.com:xKabbe/stepline.git
-  cd stepline
-  uv sync                         # creates .venv with all dev dependencies
-  uv run pre-commit install       # runs formatting and lint checks before each commit
+git clone git@github.com:xKabbe/stepline.git
+cd stepline
+uv sync                         # creates .venv with all dev dependencies
+uv run pre-commit install       # runs formatting and lint checks before each commit
 ```
 
 ## Everyday commands
 
 ```bash
-  uv run pytest                   # run the test suite
-  uv run ruff format              # format code
-  uv run ruff check --fix         # lint and auto-fix
-  uv run pyright                  # strict type checking
+uv run pytest                   # run the test suite
+uv run pytest --cov             # run the test suite with a coverage report
+uv run ruff format              # format code
+uv run ruff check --fix         # lint and auto-fix
+uv run pyright                  # strict type checking
 ```
 
 All of these also run in CI on Linux, Windows and macOS.
