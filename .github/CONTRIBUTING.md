@@ -47,6 +47,7 @@ uv run poe hooks          # run all pre-commit hooks on all files
 
 uv run poe format-check   # check formatting
 uv run poe lint           # lint
+uv run poe imports        # check import rules
 uv run poe typecheck      # strict type checking
 uv run poe test           # run the test suite (extra arguments are passed to pytest)
 uv run poe cov            # run the test suite with a coverage report
@@ -60,6 +61,7 @@ uv run poe                # list all available tasks
 ```bash
 uv run ruff format --check          # check formatting
 uv run ruff check                   # lint
+uv run lint-imports                 # check import rules
 uv run pyright                      # strict type checking
 uv run pytest                       # run the test suite
 uv run pytest --cov                 # run the test suite with a coverage report
