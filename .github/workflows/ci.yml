@@ -2,15 +2,81 @@ name: stepline CI 🧪
 run-name: ${{ github.actor }} triggered the CI workflow
 
 on:
+  push:
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  ci-placeholder:
-    name: CI Placeholder
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: CI workflow not implemented yet
-        run: echo "Lint, type check and test jobs will be implemented in a future PR."
+      - name: Check out code 📂
+        uses: actions/checkout@v6
+
+      - name: Set up uv 🧰
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      - name: Install dependencies 📦
+        run: uv sync --locked
+
+      - name: Check formatting 🎨
+        run: uv run poe format-check
+
+      - name: Lint 🔍
+        run: uv run poe lint
+
+      - name: Run pre-commit hooks 🪝
+        run: uv run pre-commit run --all-files --show-diff-on-failure
+        env:
+          SKIP: no-commit-to-branch
+
+  typecheck:
+    name: Type check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code 📂
+        uses: actions/checkout@v6
+
+      - name: Set up uv 🧰
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      - name: Install dependencies 📦
+        run: uv sync --locked
+
+      - name: Type check 🔎
+        run: uv run poe typecheck
+
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Check out code 📂
+        uses: actions/checkout@v6
+
+      - name: Set up uv 🧰
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      - name: Install dependencies 📦
+        run: uv sync --locked
+
+      - name: Run tests with coverage 🧪
+        run: uv run poe cov
