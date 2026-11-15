@@ -2,15 +2,47 @@ name: stepline PR Title 🏷️
 run-name: ${{ github.actor }} triggered the PR title workflow
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
 
 permissions:
-  contents: read
+  pull-requests: read
 
 jobs:
-  pr-title-placeholder:
-    name: PR Title Placeholder
+  validate:
+    name: Validate PR title
     runs-on: ubuntu-latest
     steps:
-      - name: PR title workflow not implemented yet
-        run: echo "Conventional Commits check for PR titles will be implemented in a future PR."
+      - name: Check Conventional Commits format 🏷️
+        uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            perf
+            docs
+            refactor
+            test
+            build
+            ci
+            chore
+            revert
+          scopes: |
+            assertions
+            steps
+            metadata
+            console
+            cli
+            tooling
+            docs
+            deps
+            deps-dev
+          requireScope: false
+          subjectPattern: ^(?![A-Z]).+$
+          subjectPatternError: |
+            The subject "{subject}" in the pull request title "{title}"
+            must start with a lowercase letter.
+          ignoreLabels: |
+            autorelease: pending
