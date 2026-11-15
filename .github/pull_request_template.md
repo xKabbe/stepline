@@ -1,72 +1,38 @@
+<!--
+  Build the PR title from the two lists below. It becomes the commit message on `main`
+  (squash merge) and drives the version number and changelog via release-please.
+
+      feat(cli): add spec export command
+      ^    ^     ^
+      |    |     |__ Subject: lowercase, imperative ("add", not "added"), no period, max. ~72 chars
+      |    |________ Scope:   optional, the area of stepline (see list below)
+      |_____________ Type:    what kind of change (see list below)
+
+  Breaking change? Add `!` before the colon, e.g. `feat(steps)!: rename on_error to on_failure`,
+  and describe the migration under "Breaking change" below.
+-->
+
 ## Summary
 
 <!-- What does this PR change, and why? One or two sentences. -->
 
 Closes #
 
-## Type of change
+## Type
 
 <!--
-  The PR title becomes the commit message on `main` (squash merge) and drives
-  versioning and the changelog via release-please. It must follow Conventional Commits:
+  Pick exactly one. The type decides whether a release happens:
 
-      <type>(<scope>): <short description in imperative mood>
-
-  - type:   what kind of change this is (see list below)
-  - scope:  optional, the part of stepline that is affected, e.g.
-            assertions, steps, metadata, log, cli, render, pytest, docs, ci
-  - description: lowercase, no trailing period, max. ~72 characters,
-            written as a command ("add", "fix", "remove" – not "added", "fixes")
-
-  Types and when to use them:
-
-  feat      A new feature or new public API for users.
-            → triggers a MINOR release (0.3.0 → 0.4.0) and appears under "Features".
-            e.g.  feat(assertions): add is_close_to to NumericAssertion
-                  feat(cli): add `stepline spec export` command
-
-  fix       A bug fix that users can notice.
-            → triggers a PATCH release (0.4.0 → 0.4.1) and appears under "Bug Fixes".
-            e.g.  fix(steps): keep step order when using async steps
-                  fix(render): avoid broken box characters on legacy Windows consoles
-
-  perf      A change that makes stepline faster or lighter without changing behavior.
-            → triggers a PATCH release and appears under "Performance".
-            e.g.  perf(pytest): cache metadata lookup during collection
-
-  docs      Documentation only: README, docs site, docstrings, examples.
-            → no release.
-            e.g.  docs(steps): add how-to for CRUD flows with blocked steps
-
-  refactor  Code restructuring that changes neither behavior nor public API.
-            → no release.
-            e.g.  refactor(core): split Failure formatting into its own module
-
-  test      Adding or improving tests only.
-            → no release.
-            e.g.  test(assertions): add hypothesis tests for is_multiple_of
-
-  build     Packaging, dependencies, build configuration (pyproject.toml, uv.lock).
-            → no release.
-            e.g.  build: bump rich to 14.x
-
-  ci        GitHub Actions workflows and other CI configuration.
-            → no release.
-            e.g.  ci: run test matrix on windows and macos
-
-  chore     Maintenance that fits nowhere else (tooling config, repo housekeeping).
-            → no release.
-            e.g.  chore: configure pre-commit hooks
-
-  revert    Reverts an earlier commit.
-            e.g.  revert: feat(cli): add `stepline spec export` command
-
-  Breaking changes:
-  Add `!` after the type/scope when existing user code would stop working
-  (renamed or removed API, changed default behavior). Explain the migration
-  in the PR description under "BREAKING CHANGE:".
-            → before 1.0: MINOR release; from 1.0 on: MAJOR release.
-            e.g.  feat(steps)!: rename `on_error` to `on_failure`
+  feat      new feature or public API          → minor release   e.g. feat(assertions): add is_close_to
+  fix       bug fix users can notice           → patch release   e.g. fix(steps): keep step order with async steps
+  perf      faster or lighter, same behavior   → patch release   e.g. perf(metadata): cache marker lookup
+  docs      documentation only                 → no release      e.g. docs(steps): add how-to for CRUD flows
+  refactor  restructuring, same behavior       → no release      e.g. refactor(console): extract failure box
+  test      tests only                         → no release      e.g. test(assertions): add hypothesis tests
+  build     packaging, dependencies            → no release      e.g. build: add typer dependency
+  ci        GitHub Actions workflows           → no release      e.g. ci(tooling): run tests on macos
+  chore     maintenance, tooling config        → no release      e.g. chore(tooling): configure pre-commit
+  revert    reverts an earlier change          → depends         e.g. revert: feat(cli): add spec export command
 -->
 
 - [ ] `feat` – new feature or public API
@@ -75,13 +41,36 @@ Closes #
 - [ ] `docs` – documentation only
 - [ ] `refactor` – restructuring without behavior change
 - [ ] `test` – tests only
-- [ ] `build` / `ci` / `chore` – packaging, CI, maintenance
-- [ ] Breaking change (title uses `!`, migration explained below)
+- [ ] `build` – packaging and dependencies
+- [ ] `ci` – workflows and CI configuration
+- [ ] `chore` – maintenance and tooling
+- [ ] `revert` – reverts an earlier change
+
+## Scope
+
+<!--
+  Pick one, or none if the change affects the whole project.
+  `deps` and `deps-dev` are reserved for automated dependency updates.
+-->
+
+- [ ] `assertions` – assert_that() and all assertion classes
+- [ ] `steps` – steps, scenarios and step failure behavior
+- [ ] `metadata` – metadata decorators, spec export and test reports
+- [ ] `console` – console output, logging and rendering
+- [ ] `cli` – the stepline command-line tool
+- [ ] `tooling` – repository setup, linting, CI and release pipeline
+- [ ] `docs` – documentation site, ADRs and examples
+- [ ] no scope
+
+## Breaking change
+
+- [ ] This PR breaks existing user code (title uses `!`)
+
+<!-- If checked: what breaks, and how do users migrate? -->
 
 ## Checklist
 
-- [ ] Tests added or updated, all green locally
+- [ ] Tests added or updated, all green locally (`uv run poe check`)
 - [ ] Public API has complete docstrings with an example
 - [ ] Documentation updated (if user-facing)
-- [ ] Type checks pass (`pyright`)
 - [ ] Tried it out in a real test project (if user-facing)
