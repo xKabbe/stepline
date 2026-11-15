@@ -36,7 +36,7 @@ jobs:
       - name: Lint 🔍
         run: uv run poe lint
 
-      - name : Check import rules 🏛️
+      - name: Check import rules 🏛️
         run: uv run poe imports
 
       - name: Run pre-commit hooks 🪝
