@@ -22,19 +22,41 @@ uv sync                         # creates .venv with all dev dependencies
 uv run pre-commit install       # runs formatting and lint checks before each commit
 ```
 
+### Pre-commit hooks
+
+After `uv run pre-commit install`, a set of checks runs automatically on every commit:
+formatting and linting with ruff, spell checking, lock file and workflow validation,
+and basic file hygiene. The first run takes a moment while the hooks are installed.
+
+If a hook fixes something (for example, formatting), the commit stops and the fixed
+files are left unstaged. Review the changes, `git add` them and commit again.
+
+Commits directly to `main` are blocked; please work on a branch.
+
 ## Everyday commands
+
+[poethepoet](https://poethepoet.natn.io/) is installed with the dev dependencies.
+Its tasks are defined in `poe_tasks.toml`.
 
 ### With `poe` (shortcuts)
 
 ```bash
-uv run poe check     # run all checks, like CI does
-uv run poe fix       # auto-fix lint findings and format all code
-uv run poe test      # run the test suite (extra arguments are passed to pytest)
-uv run poe cov       # run the test suite with a coverage report
-uv run poe           # list all available tasks
+uv run poe check          # run all checks, like CI does
+uv run poe fix            # auto-fix lint findings and format all code
+uv run poe hooks          # run all pre-commit hooks on all files
+
+uv run poe format-check   # check formatting
+uv run poe lint           # lint
+uv run poe typecheck      # strict type checking
+uv run poe test           # run the test suite (extra arguments are passed to pytest)
+uv run poe cov            # run the test suite with a coverage report
+uv run poe format         # format all code
+
+uv run poe                # list all available tasks
 ```
 
 ### Without `poe` (the underlying commands)
+
 ```bash
 uv run ruff format --check          # check formatting
 uv run ruff check                   # lint
