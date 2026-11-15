@@ -2,6 +2,10 @@
 help = "Lint all code"
 cmd = "ruff check"
 
+[tasks.imports]
+help = "Check the architecture rules for imports"
+cmd = "lint-imports"
+
 [tasks.format]
 help = "Format all code"
 cmd = "ruff format"
@@ -38,6 +42,7 @@ help = "Run all checks, like CI does"
 sequence = [
     "format-check",
     "lint",
+    "imports",
     "typecheck",
     "test"
 ]
