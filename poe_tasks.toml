@@ -1,0 +1,43 @@
+[tasks.lint]
+help = "Lint all code"
+cmd = "ruff check"
+
+[tasks.format]
+help = "Format all code"
+cmd = "ruff format"
+
+[tasks.format-check]
+help = "Check that all code is formatted"
+cmd = "ruff format --check"
+
+[tasks.typecheck]
+help = "Run strict type checks"
+cmd = "pyright"
+
+[tasks.test]
+help = "Run the test suite"
+cmd = "pytest"
+
+[tasks.cov]
+help = "Run the test suite with a coverage report"
+cmd = "pytest --cov"
+
+[tasks.hooks]
+help = "Run all pre-commit hooks on all files"
+cmd = "pre-commit run --all-files"
+
+[tasks.fix]
+help = "Auto-fix lint findings and format all code"
+sequence = [
+    { cmd = "ruff check --fix" },
+    { cmd = "ruff format" }
+]
+
+[tasks.check]
+help = "Run all checks, like CI does"
+sequence = [
+    "format-check",
+    "lint",
+    "typecheck",
+    "test"
+]
