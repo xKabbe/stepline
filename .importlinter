@@ -1,0 +1,32 @@
+[importlinter]
+root_package = stepline
+include_external_packages = True
+
+[importlinter:contract:layers]
+name = Dependencies only point inwards
+type = layers
+layers =
+    stepline._cli : stepline._pytest
+    stepline._render
+    stepline.assertions : stepline.steps : stepline.metadata : stepline.log : stepline.performance
+    stepline._core
+
+[importlinter:contract:core-is-pure]
+name = The core imports neither pytest nor rich
+type = forbidden
+source_modules =
+    stepline._core
+forbidden_modules =
+    pytest
+    rich
+    typer
+
+[importlinter:contract:assertions-without-pytest]
+name = Assertions work without pytest
+type = forbidden
+source_modules =
+    stepline.assertions
+forbidden_modules =
+    pytest
+    rich
+    typer
