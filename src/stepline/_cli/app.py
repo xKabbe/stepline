@@ -35,7 +35,7 @@ def cli(
 
     Args:
         version: Handled by `version_option`, which shows the banner and exits.
-        The parameter only exists for that Typer adds the option.
+                The parameter only exists so that Typer adds the option.
     """
 
 
