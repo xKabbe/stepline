@@ -9,7 +9,13 @@ authors = [
     { name = "Steven Karbjinsky", email = "steven.karbjinsky@web.de" }
 ]
 requires-python = ">=3.15"
-dependencies = []
+dependencies = [
+    "rich>=15.0.0",
+    "typer>=0.29.1",
+]
+
+[project.scripts]
+stepline = "stepline._cli.app:main"
 
 [project.entry-points.pytest11]
 stepline = "stepline._pytest.plugin"
