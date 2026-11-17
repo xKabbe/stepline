@@ -1,8 +1,9 @@
 """Tests for the stepline banner shown by standalone commands such as `stepline --version`."""
 
 import io
-from importlib.metadata import metadata
+from importlib.metadata import PackageNotFoundError, metadata
 
+import pytest
 from rich.console import Console
 
 import stepline
@@ -37,6 +38,23 @@ def test_banner_shows_single_line_on_narrow_console() -> None:
     """A narrow console shows only a single line with the stepline version and the command."""
     text = _render(width=40)
     assert f"stepline {stepline.__version__} · --version" == text.strip()
+
+
+def test_banner_shows_pytest_as_not_installed_if_missing(monkeypatch: pytest.MonkeyPatch) -> None:
+    """
+    The banner shows pytest as "not installed" if pytest cannot be found.
+
+    Args:
+        monkeypatch: The pytest monkeypatch fixture to replace the version lookup.
+    """
+
+    def _raise_package_not_found(name: str) -> None:
+        raise PackageNotFoundError(name)
+
+    monkeypatch.setattr("stepline._render.banner.version", _raise_package_not_found)
+
+    text = _render(width=120)
+    assert "pytest not installed" in text
 
 
 def _render(width: int) -> str:
