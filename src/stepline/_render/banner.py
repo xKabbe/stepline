@@ -29,9 +29,6 @@ PANEL_PADDING = (1, 2)
 PANEL_CHROME = 2 + 2 * PANEL_PADDING[1]
 MEASURE_WIDTH = 1_000
 
-MIN_WIDTH_SIDE_BY_SIDE = 85
-MIN_WIDTH_BANNER = 60
-
 
 def render_banner(console: Console, command: str) -> None:
     """
