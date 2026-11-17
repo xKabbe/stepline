@@ -22,6 +22,7 @@ def test_app_contains_option(option: str, short_option: str, help_text: str) -> 
         help_text: A part of the help text that is shown for the option.
     """
     result = runner.invoke(app, ["--help"])
+
     assert result.exit_code == 0
     assert "Usage: stepline" in result.output
     assert "Options" in result.output
@@ -33,6 +34,7 @@ def test_app_contains_option(option: str, short_option: str, help_text: str) -> 
 def test_app_shows_help_without_arguments() -> None:
     """Calling the stepline command-line tool without arguments show the help output."""
     result = runner.invoke(app, [])
+
     assert result.exit_code == 2
     assert "Usage: stepline" in result.output
     assert "Options" in result.output
