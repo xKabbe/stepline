@@ -5,60 +5,81 @@ from importlib.metadata import PackageNotFoundError, metadata, version
 
 from rich import box
 from rich.console import Console, Group
+from rich.measure import Measurement
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
 import stepline
 
+LOGO_LINES = (
+    r"         __             ___",
+    r"   _____/ /____  ____  / (_)___  ___",
+    r"  / ___/ __/ _ \/ __ \/ / / __ \/ _ \ ",
+    r" (__  ) /_/  __/ /_/ / / / / / /  __/",
+    r"/____/\__/\___/ .___/_/_/_/ /_/\___/",
+    r"             /_/",
+)
+SLOGAN = "Step by step. Line by line."
+
+GRADIENT_START = (34, 211, 238)
+GRADIENT_END = (139, 92, 246)
+
+PANEL_PADDING = (1, 2)
+PANEL_CHROME = 2 + 2 * PANEL_PADDING[1]
+MEASURE_WIDTH = 1_000
+
+MIN_WIDTH_SIDE_BY_SIDE = 85
+MIN_WIDTH_BANNER = 60
+
 
 def render_banner(console: Console, command: str) -> None:
     """
     Render the stepline banner for a specific command in the console.
 
-    Depending on the width of the terminal this banner will be shown in one of the following formats:
+    The banner uses the widest of the following layouts that fits into the console:
 
-    - Logo and table with information will be displayed side by side (large width)
-    - Logo and table with information will be displayed on top of each other (medium width)
-    - Only a short statement with the stepline version will be printed (small width)
+    - Logo and table with information displayed side by side
+    - Logo and table with information displayed on top of each other
+    - Only a short statement with the stepline version, if neither layout fits
 
     Args:
         console: The rich console to print to.
         command: The command that shows the banner, e.g. "--version".
     """
-    min_width_side_by_side = 85
-    min_width_banner = 60
+    logo, info = _gradient_logo(), _info_table(command=command)
 
-    if console.width < min_width_banner:
-        # Only print the information without a logo if terminal width is too small
+    side_by_side = Table.grid(padding=(0, 4))
+    side_by_side.add_column()
+    side_by_side.add_column(vertical="middle")
+    side_by_side.add_row(logo, info)
+
+    stacked = Group(logo, Text(), info)
+
+    measure_options = console.options.update_width(MEASURE_WIDTH)
+    content = next(
+        (
+            layout
+            for layout in (side_by_side, stacked)
+            if Measurement.get(console, measure_options, layout).maximum + PANEL_CHROME <= console.width
+        ),
+        None,
+    )
+
+    if content is None:
         console.print(f"stepline {stepline.__version__} · {command}")
         return
-
-    logo, info = _gradient_logo(), _info_table(command=command)
-    if console.width >= min_width_side_by_side:
-        # Panel content for a larger width to display the logo and table side by side
-        grid = Table.grid(padding=(0, 4))
-        grid.add_column()
-        grid.add_column(vertical="middle")
-        grid.add_row(logo, info)
-
-        content = grid
-    else:
-        # Panel content for a smaller width to display the logo on top of the table
-        content = Group(logo, Text(), info)
-
-    unicode_ok = console.encoding.lower().startswith("utf")
 
     console.print(
         Panel(
             content,
-            box=box.ROUNDED if unicode_ok else box.ASCII,
+            box=box.ROUNDED,
             border_style="grey42",
             title=f"[dim]by {metadata('stepline').get('author')}[/]",
             title_align="left",
-            subtitle="[italic dim]Step by step. Line by line.[/]",
+            subtitle=f"[italic dim]{SLOGAN}[/]",
             subtitle_align="right",
-            padding=(1, 2),
+            padding=PANEL_PADDING,
             expand=False,
         )
     )
@@ -71,25 +92,14 @@ def _gradient_logo() -> Text:
     Returns:
         The colored logo as rich text.
     """
-    logo_lines = (
-        r"         __             ___",
-        r"   _____/ /____  ____  / (_)___  ___",
-        r"  / ___/ __/ _ \/ __ \/ / / __ \/ _ \ ",
-        r" (__  ) /_/  __/ /_/ / / / / / /  __/",
-        r"/____/\__/\___/ .___/_/_/_/ /_/\___/",
-        r"             /_/",
-    )
-    gradient_start = (34, 211, 238)
-    gradient_end = (139, 92, 246)
-
-    width = max(len(line) for line in logo_lines)
+    width = max(len(line) for line in LOGO_LINES)
     logo = Text()
 
-    for line in logo_lines:
+    for line in LOGO_LINES:
         for column, char in enumerate(line):
             share = column / (width - 1)
             red, green, blue = (
-                round(start + (end - start) * share) for start, end in zip(gradient_start, gradient_end, strict=True)
+                round(start + (end - start) * share) for start, end in zip(GRADIENT_START, GRADIENT_END, strict=True)
             )
 
             logo.append(char, style=f"bold rgb({red},{green},{blue})")
@@ -125,7 +135,7 @@ def _get_pytest_version() -> str:
     Return the installed version of pytest.
 
     Returns:
-        The version string, or "not installed"
+        The version string, or "not installed".
     """
     try:
         return version("pytest")
