@@ -29,6 +29,13 @@ sequence = [
     { cmd = "coverage report" }
 ]
 
+[tasks.cov-html]
+help = "Run the test suite with a coverage HTML report"
+sequence = [
+    { cmd = "coverage run -m pytest" },
+    { cmd = "coverage html" }
+]
+
 [tasks.hooks]
 help = "Run all pre-commit hooks on all files"
 cmd = "pre-commit run --all-files"
@@ -47,5 +54,5 @@ sequence = [
     "lint",
     "imports",
     "typecheck",
-    "test"
+    "cov"
 ]

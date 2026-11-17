@@ -55,8 +55,10 @@ filterwarnings = ["error"]
 [tool.coverage.run]
 source = ["stepline"]
 branch = true
+dynamic_context = "test_function"
 
 [tool.coverage.report]
+fail_under = 100
 show_missing = true
 skip_covered = true
 exclude_also = [
@@ -64,3 +66,7 @@ exclude_also = [
     "@overload",
     "raise NotImplementedError"
 ]
+
+[tool.coverage.html]
+show_contexts = true
+skip_covered = false
