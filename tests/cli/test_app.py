@@ -1,11 +1,32 @@
 """Tests for the stepline command-line tool."""
 
+import sys
+
 import pytest
 from typer.testing import CliRunner
 
-from stepline._cli.app import app
+from stepline._cli.app import app, main
 
 runner = CliRunner()
+
+
+def test_main_rund_the_app(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+    """
+    The entry point of the `stepline` command runs the command-line tool with the given arguments.
+
+    Args:
+        monkeypatch: The pytest monkeypatch fixture to set the command-line arguments.
+        capsys: The pytest capsys fixture to capture the terminal output.
+    """
+    monkeypatch.setattr(sys, "argv", ["stepline", "--help"])
+
+    with pytest.raises(SystemExit) as error_info:
+        main()
+    output = capsys.readouterr().out
+
+    assert error_info.value.code == 0
+    assert "Usage:" in output
+    assert app.info.help in output
 
 
 @pytest.mark.parametrize(
@@ -25,6 +46,7 @@ def test_app_contains_option(option: str, short_option: str, help_text: str) -> 
 
     assert result.exit_code == 0
     assert "Usage: stepline" in result.output
+    assert app.info.help in result.output
     assert "Options" in result.output
     assert option in result.output
     assert short_option in result.output
@@ -37,4 +59,5 @@ def test_app_shows_help_without_arguments() -> None:
 
     assert result.exit_code == 2
     assert "Usage: stepline" in result.output
+    assert app.info.help in result.output
     assert "Options" in result.output
