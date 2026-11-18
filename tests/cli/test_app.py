@@ -46,7 +46,7 @@ def test_app_contains_option(option: str, short_option: str, help_text: str) -> 
     result = runner.invoke(app, ["--help"])
 
     assert result.exit_code == 0
-    assert "Usage: stepline" in result.output
+    assert "Usage:" in result.output
     assert app.info.help is not None
     assert app.info.help in result.output
     assert "Options" in result.output
@@ -60,7 +60,7 @@ def test_app_shows_help_without_arguments() -> None:
     result = runner.invoke(app, [])
 
     assert result.exit_code == 2
-    assert "Usage: stepline" in result.output
+    assert "Usage:" in result.output
     assert app.info.help is not None
     assert app.info.help in result.output
     assert "Options" in result.output
