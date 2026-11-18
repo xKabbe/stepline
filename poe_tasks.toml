@@ -24,7 +24,17 @@ cmd = "pytest"
 
 [tasks.cov]
 help = "Run the test suite with a coverage report"
-cmd = "pytest --cov"
+sequence = [
+    { cmd = "coverage run -m pytest" },
+    { cmd = "coverage report" }
+]
+
+[tasks.cov-html]
+help = "Run the test suite with a coverage HTML report"
+sequence = [
+    { cmd = "coverage run -m pytest" },
+    { cmd = "coverage html" }
+]
 
 [tasks.hooks]
 help = "Run all pre-commit hooks on all files"
@@ -44,5 +54,5 @@ sequence = [
     "lint",
     "imports",
     "typecheck",
-    "test"
+    "cov"
 ]
