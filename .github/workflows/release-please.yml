@@ -2,15 +2,31 @@ name: stepline Release Please 🚀
 run-name: ${{ github.actor }} triggered the release-please workflow
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
-  release-please-placeholder:
-    name: Release Please Placeholder
+  release-please:
+    name: Release Please
     runs-on: ubuntu-latest
     steps:
-      - name: Release-please workflow not implemented yet
-        run: echo "Release PR and tagging will be implemented in a future PR."
+      - name: Create GitHub App token 🔑
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.RELEASE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+
+      - name: Create or update release PR 🚀
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
