@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} triggered the PR title workflow
 
 on:
   pull_request:
-    types: [opened, edited, synchronize, reopened]
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled]
 
 permissions:
   pull-requests: read

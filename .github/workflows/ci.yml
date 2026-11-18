@@ -42,7 +42,7 @@ jobs:
       - name: Run pre-commit hooks 🪝
         run: uv run pre-commit run --all-files --show-diff-on-failure
         env:
-          SKIP: no-commit-to-branch
+          SKIP: no-commit-to-branch,pyright
 
   typecheck:
     name: Type check
