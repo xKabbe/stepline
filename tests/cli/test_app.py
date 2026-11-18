@@ -2,6 +2,7 @@
 
 import sys
 
+import click
 import pytest
 from typer.testing import CliRunner
 
@@ -22,7 +23,7 @@ def test_main_rund_the_app(monkeypatch: pytest.MonkeyPatch, capsys: pytest.Captu
 
     with pytest.raises(SystemExit) as error_info:
         main()
-    output = capsys.readouterr().out
+    output = click.unstyle(capsys.readouterr().out)
 
     assert error_info.value.code == 0
     assert "Usage:" in output
@@ -44,23 +45,25 @@ def test_app_contains_option(option: str, short_option: str, help_text: str) -> 
         help_text: A part of the help text that is shown for the option.
     """
     result = runner.invoke(app, ["--help"])
+    output = click.unstyle(result.output)
 
     assert result.exit_code == 0
-    assert "Usage:" in result.output
+    assert "Usage:" in output
     assert app.info.help is not None
-    assert app.info.help in result.output
-    assert "Options" in result.output
-    assert option in result.output
-    assert short_option in result.output
-    assert help_text in result.output
+    assert app.info.help in output
+    assert "Options" in output
+    assert option in output
+    assert short_option in output
+    assert help_text in output
 
 
 def test_app_shows_help_without_arguments() -> None:
     """Calling the stepline command-line tool without arguments show the help output."""
     result = runner.invoke(app, [])
+    output = click.unstyle(result.output)
 
     assert result.exit_code == 2
-    assert "Usage:" in result.output
+    assert "Usage:" in output
     assert app.info.help is not None
-    assert app.info.help in result.output
-    assert "Options" in result.output
+    assert app.info.help in output
+    assert "Options" in output
