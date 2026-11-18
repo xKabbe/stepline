@@ -26,6 +26,7 @@ def test_main_rund_the_app(monkeypatch: pytest.MonkeyPatch, capsys: pytest.Captu
 
     assert error_info.value.code == 0
     assert "Usage:" in output
+    assert app.info.help is not None
     assert app.info.help in output
 
 
@@ -46,6 +47,7 @@ def test_app_contains_option(option: str, short_option: str, help_text: str) -> 
 
     assert result.exit_code == 0
     assert "Usage: stepline" in result.output
+    assert app.info.help is not None
     assert app.info.help in result.output
     assert "Options" in result.output
     assert option in result.output
@@ -59,5 +61,6 @@ def test_app_shows_help_without_arguments() -> None:
 
     assert result.exit_code == 2
     assert "Usage: stepline" in result.output
+    assert app.info.help is not None
     assert app.info.help in result.output
     assert "Options" in result.output
