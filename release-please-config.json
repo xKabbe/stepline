@@ -6,7 +6,6 @@
   "packages": {
     ".": {
       "package-name": "pytest-stepline",
-      "release-as": "0.0.1",
       "extra-files": [
         {
           "type": "toml",
