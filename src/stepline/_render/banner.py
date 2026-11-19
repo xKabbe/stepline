@@ -72,7 +72,7 @@ def render_banner(console: Console, command: str) -> None:
             content,
             box=box.ROUNDED,
             border_style="grey42",
-            title=f"[dim]by {metadata('stepline').get('author')}[/]",
+            title=f"[dim]by {metadata('pytest-stepline').get('author')}[/]",
             title_align="left",
             subtitle=f"[italic dim]{SLOGAN}[/]",
             subtitle_align="right",

@@ -25,7 +25,7 @@ def test_version_option_shows_banner_and_exits(option: str) -> None:
     result = runner.invoke(app, [option])
 
     assert result.exit_code == 0
-    assert f"by {metadata('stepline').get('author', '-')}" in result.output
+    assert f"by {metadata('pytest-stepline').get('author', '-')}" in result.output
     assert stepline.__version__ in result.output
     assert platform.python_version() in result.output
     assert version("pytest") in result.output

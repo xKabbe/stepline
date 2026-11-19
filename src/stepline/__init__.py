@@ -2,4 +2,4 @@
 
 from importlib.metadata import version
 
-__version__ = version("stepline")
+__version__ = version("pytest-stepline")

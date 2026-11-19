@@ -1,5 +1,5 @@
 [project]
-name = "stepline"
+name = "pytest-stepline"
 version = "0.0.0"
 description = "Add your description here"
 license = "MIT"
@@ -23,6 +23,9 @@ stepline = "stepline._pytest.plugin"
 [build-system]
 requires = ["uv_build>=0.13,<0.14"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "stepline"
 
 [dependency-groups]
 dev = [
