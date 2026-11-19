@@ -70,7 +70,7 @@ body:
     id: stepline_version
     attributes:
       label: "stepline version"
-      placeholder: "output of `stepline --version` or `pip show stepline`"
+      placeholder: "output of `stepline --version` or `pip show pytest-stepline`"
     validations:
       required: true
   # Version (python)

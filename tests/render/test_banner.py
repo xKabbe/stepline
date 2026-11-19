@@ -16,7 +16,7 @@ def test_banner_shows_logo_next_to_info_on_wide_console() -> None:
     logo_indices = _logo_indices(text=text)
     stepline_version_index = _stepline_version_index(text=text)
 
-    assert f"by {metadata('stepline').get('author', '-')}" in text
+    assert f"by {metadata('pytest-stepline').get('author', '-')}" in text
     assert SLOGAN in text
     assert logo_indices
     assert stepline_version_index in logo_indices
@@ -28,7 +28,7 @@ def test_banner_shows_logo_above_info_on_medium_console() -> None:
     logo_indices = _logo_indices(text=text)
     stepline_version_index = _stepline_version_index(text=text)
 
-    assert f"by {metadata('stepline').get('author', '-')}" in text
+    assert f"by {metadata('pytest-stepline').get('author', '-')}" in text
     assert SLOGAN in text
     assert logo_indices
     assert stepline_version_index > max(logo_indices)

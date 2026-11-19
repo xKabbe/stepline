@@ -5,13 +5,13 @@
   "include-component-in-tag": false,
   "packages": {
     ".": {
-      "package-name": "stepline",
+      "package-name": "pytest-stepline",
       "release-as": "0.0.1",
       "extra-files": [
         {
           "type": "toml",
           "path": "uv.lock",
-          "jsonpath": "$.package[?(@.name.value=='stepline')].version"
+          "jsonpath": "$.package[?(@.name.value=='pytest-stepline')].version"
         }
       ]
     }
