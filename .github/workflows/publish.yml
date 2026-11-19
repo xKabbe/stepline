@@ -2,15 +2,74 @@ name: stepline Publish 📦
 run-name: ${{ github.actor }} triggered the publish workflow
 
 on:
+  release:
+    types: [published]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  publish-placeholder:
-    name: Publish Placeholder
+  build:
+    name: Build distributions
     runs-on: ubuntu-latest
     steps:
-      - name: Publish workflow not implemented yet
-        run: echo "Build and PyPI upload via Trusted Publishing will be implemented in a future PR."
+      - name: Check out code 📂
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up uv 🧰
+        uses: astral-sh/setup-uv@v7
+
+      - name: Build sdist and wheel 🏗️
+        run: uv build
+
+      - name: Upload distributions 📤
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+
+  publish-testpypi:
+    name: Publish to TestPyPI
+    if: github.event_name == 'workflow_dispatch'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/pytest-stepline
+    permissions:
+      id-token: write
+    steps:
+      - name: Download distributions 📥
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to TestPyPI 🧪
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+  publish-pypi:
+    name: Publish to PyPI
+    if: github.event_name == 'release'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/pytest-stepline
+    permissions:
+      id-token: write
+    steps:
+      - name: Download distributions 📥
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI 🚀
+        uses: pypa/gh-action-pypi-publish@release/v1
