@@ -1,5 +1,9 @@
 # Contributing to stepline
 
+> [!IMPORTANT]
+> stepline is currently a personal project in early development and does not accept contributions (pull requests, issues, or feature requests) yet.
+> This may change once the foundation is in place.
+
 Thanks for your interest in stepline! Bug reports, ideas, documentation fixes and code
 contributions are all welcome.
 
