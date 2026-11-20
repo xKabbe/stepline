@@ -1,7 +1,7 @@
 [project]
 name = "pytest-stepline"
 version = "0.0.1"
-description = "Add your description here"
+description = "Structured pytest tests with steps, typed assertions, and test documentation."
 license = "MIT"
 license-files = ["LICENSE"]
 readme = "README.md"
@@ -9,10 +9,27 @@ authors = [
     { name = "Steven Karbjinsky", email = "steven.karbjinsky@web.de" }
 ]
 requires-python = ">=3.15"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.15",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed",
+]
+keywords = ["pytest", "testing", "test-steps", "assertions", "qa"]
 dependencies = [
     "rich>=15.0.0",
     "typer>=0.29.1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/xKabbe/stepline"
+Repository = "https://github.com/xKabbe/stepline"
+Issues = "https://github.com/xKabbe/stepline/issues"
+Changelog = "https://github.com/xKabbe/stepline/blob/main/CHANGELOG.md"
 
 [project.scripts]
 stepline = "stepline._cli.app:main"
