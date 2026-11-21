@@ -29,6 +29,7 @@ repos:
     rev: 0.39.0
     hooks:
       - id: check-github-workflows
+      - id: check-dependabot
 
   - repo: https://github.com/crate-ci/typos
     rev: v1.52.2
