@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.2](https://github.com/xKabbe/stepline/compare/v0.0.1...v0.0.2) (2026-11-21)
+
+
+### Documentation
+
+* **docs:** add zensical as project documentation framework ([8325e87](https://github.com/xKabbe/stepline/commit/8325e8790af02e7d8b76c33fff36fb149317fb08))
+* **docs:** prepare project metadata and readme for pypi ([9536b88](https://github.com/xKabbe/stepline/commit/9536b886c0fe3d987874e8c1629f4bb6e40e64fe))
+
 ## 0.0.1 (2026-11-19)
 
 
