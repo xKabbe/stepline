@@ -47,13 +47,13 @@ module-name = "stepline"
 
 [dependency-groups]
 dev = [
-    "import-linter>=2.16",
+    "import-linter>=2.17",
     "poethepoet>=0.49.0",
     "pre-commit>=4.7.0",
     "pyright>=1.1.414",
     "pytest>=9.2.0",
     "pytest-cov>=7.1.0",
-    "ruff>=0.17.4",
+    "ruff>=0.17.5",
     "zensical>=0.1.3",
 ]
 
