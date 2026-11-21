@@ -6,22 +6,25 @@
 </p>
 
 <p align="center">
-    <a href="https://pypi.org/project/pytest-stepline/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/pytest-stepline?label=PyPI&color=8b5cf6&logo=pypi"></a>
-    <a href="https://pypi.org/project/pytest-stepline/"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/pytest-stepline?label=Python&color=22d3ee&logo=python"></a>
-    <a href="https://docs.pytest.org/en/stable/"><img alt="pytest plugin" src="https://img.shields.io/badge/pytest-plugin-0A9EDC?logo=pytest"></a>
-    <a href="https://github.com/xKabbe/stepline/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/pypi/l/pytest-stepline?label=License&color=yellow&logo=opensourceinitiative"></a>
+    <a href="https://pypi.org/project/pytest-stepline/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/pytest-stepline?label=PyPI&color=22d3ee&logo=pypi&logoColor=FFD242"></a>
+    <a href="https://pypi.org/project/pytest-stepline/"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/pytest-stepline?label=Python&color=45abf1&logo=python&logoColor=FFD43B"></a>
+    <a href="https://docs.pytest.org/en/stable/"><img alt="pytest plugin" src="https://img.shields.io/badge/pytest-plugin-6884f3?logo=pytest&logoColor=0A9EDC"></a>
+    <a href="https://github.com/xKabbe/stepline/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/pypi/l/pytest-stepline?label=License&color=8b5cf6&logo=opensourceinitiative&logoColor=3DA639"></a>
 </p>
 
 <p align="center">
     <a href="https://github.com/xKabbe/stepline/actions/workflows/ci.yml"><img alt="CI status" src="https://img.shields.io/github/actions/workflow/status/xKabbe/stepline/ci.yml?branch=main&label=CI&logo=githubactions"></a>
     <a href="https://github.com/xKabbe/stepline/actions/workflows/ci.yml"><img alt="Coverage 100 %" src="https://img.shields.io/badge/coverage-100%25-brightgreen"></a>
+    <a href="https://xkabbe.github.io/stepline/"><img alt="Documentation build" src="https://img.shields.io/github/actions/workflow/status/xKabbe/stepline/docs.yml?branch=main&label=docs&logo=readthedocs"></a>
     <a href="https://github.com/microsoft/pyright"><img alt="Checked with pyright (strict)" src="https://img.shields.io/badge/types-pyright%20strict-blue"></a>
     <a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json"></a>
     <a href="https://github.com/astral-sh/uv"><img alt="uv" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json"></a>
+    <a href="https://zensical.org/"><img alt="Built with Zensical" src="https://img.shields.io/badge/built%20with-Zensical-0f172a?logo=zensical"></a>
     <a href="https://www.conventionalcommits.org"><img alt="Conventional Commits" src="https://img.shields.io/badge/commits-conventional-fe5196?logo=conventionalcommits"></a>
 </p>
 
 <p align="center">
+    <a href="https://xkabbe.github.io/stepline/">Documentation</a> ·
     <a href="https://pypi.org/project/pytest-stepline/">PyPI</a> ·
     <a href="https://github.com/xKabbe/stepline/blob/main/CHANGELOG.md">Changelog</a> ·
     <a href="https://github.com/xKabbe/stepline/milestones">Roadmap</a> ·
@@ -30,7 +33,7 @@
 
 ---
 
-**stepline** is a [pytest](https://docs.pytest.org) companion library for structured, readable tests:
+`stepline` is a [pytest](https://docs.pytest.org) companion library for structured, readable tests:
 steps that show what a test does, typed assertions that say what went wrong, and test documentation that lives right next to the code.
 
 > [!NOTE]
@@ -98,7 +101,3 @@ The [contributing guide](https://github.com/xKabbe/stepline/blob/main/.github/CO
 ## License
 
 stepline is released under the [MIT License](https://github.com/xKabbe/stepline/blob/main/LICENSE).
-
-<p align="center">
-    <img src="https://raw.githubusercontent.com/xKabbe/stepline/main/docs/assets/brand/stepline-icon-64.png" alt="" width="32">
-</p>
