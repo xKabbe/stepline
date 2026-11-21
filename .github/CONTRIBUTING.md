@@ -76,6 +76,12 @@ uv run pre-commit run --all-files   # run all pre-commit hooks on all files
 
 All of these also run in CI on Linux, Windows and macOS.
 
+## Architecture decisions
+
+Significant decisions are recorded as Architecture Decision Records (ADRs) in [`docs/adr/`](../docs/adr/) and published in the [documentation](https://xkabbe.github.io/stepline/adr/).
+Before changing the structure, dependencies or tooling of the project, check whether an ADR covers it.
+A new decision gets a new ADR, based on the [template](../docs/adr/template.md).
+
 ## Making a change
 
 1. Create a branch from `main`, e.g. `feat/12-numeric-assertions` or `fix/14-nan-handling`.
