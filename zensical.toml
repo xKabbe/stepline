@@ -13,7 +13,16 @@ edit_uri = "edit/main/docs/"
 nav = [
     { "Home" = "index.md" },
     { "Getting started" = "getting-started.md" },
-    { "Architecture decisions" = "adr/index.md" },
+    { "Architecture decisions" = [
+        "adr/index.md",
+        "adr/0001-record-architecture-decisions.md",
+        "adr/0002-python-3-15-as-minimum-version.md",
+        "adr/0003-src-layout-with-uv-and-uv-build.md",
+        "adr/0004-layered-architecture-with-import-linter.md",
+        "adr/0005-distribution-and-import-name.md",
+        "adr/0006-automated-releases.md",
+        "adr/0007-zensical-for-documentation.md",
+    ] },
 ]
 
 extra_css = ["stylesheets/extra.css"]
@@ -42,7 +51,7 @@ features = [
   # "navigation.instant.progress",
     "navigation.path",
   # "navigation.prune",
-    "navigation.sections",
+#    "navigation.sections",
 #   "navigation.tabs",
 #   "navigation.tabs.sticky",
     "navigation.top",
