@@ -1,0 +1,8 @@
+:root {
+  --md-primary-fg-color: #0f172a;   /* header: the navy from banner and icon */
+  --md-accent-fg-color: #8b5cf6;    /* links on hover: violet */
+}
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #8b5cf6;   /* primary buttons in dark mode: violet */
+  --md-typeset-a-color: #22d3ee;    /* links in dark mode: cyan */
+}

@@ -2,15 +2,57 @@ name: stepline Documentation 📚
 run-name: ${{ github.actor }} triggered the documentation workflow
 
 on:
+  push:
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  docs-placeholder:
-    name: Documentation Placeholder
+  build:
+    name: Build documentation
     runs-on: ubuntu-latest
     steps:
-      - name: Documentation workflow not implemented yet
-        run: echo "MkDocs build and GitHub Pages deployment will be implemented in a future PR."
+      - name: Check out code 📂
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up uv 🧰
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      - name: Install dependencies 📦
+        run: uv sync --locked
+
+      - name: Build documentation 🏗️
+        run: uv run poe docs-build
+
+      - name: Upload site 📤
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v5

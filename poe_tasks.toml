@@ -54,5 +54,14 @@ sequence = [
     "lint",
     "imports",
     "typecheck",
-    "cov"
+    "cov",
+    "docs-build"
 ]
+
+[tasks.docs]
+help = "Serve the Zensical documentation locally with live reload"
+cmd = "zensical serve"
+
+[tasks.docs-build]
+help = "Build the Zensical documentation and fail on any warning"
+cmd = "zensical build --strict"
