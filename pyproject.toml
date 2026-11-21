@@ -26,6 +26,7 @@ dependencies = [
 ]
 
 [project.urls]
+Documentation = "https://xkabbe.github.io/stepline/"
 Homepage = "https://github.com/xKabbe/stepline"
 Repository = "https://github.com/xKabbe/stepline"
 Issues = "https://github.com/xKabbe/stepline/issues"
@@ -53,6 +54,7 @@ dev = [
     "pytest>=9.2.0",
     "pytest-cov>=7.1.0",
     "ruff>=0.17.4",
+    "zensical>=0.1.3",
 ]
 
 [tool.pyright]
