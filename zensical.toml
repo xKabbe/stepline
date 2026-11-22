@@ -22,6 +22,7 @@ nav = [
         "adr/0005-distribution-and-import-name.md",
         "adr/0006-automated-releases.md",
         "adr/0007-zensical-for-documentation.md",
+        "adr/0008-assertion-api-design.md",
     ] },
 ]
 

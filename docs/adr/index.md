@@ -25,6 +25,7 @@ that made it necessary, what was decided, and what follows from it.
 | [0005](0005-distribution-and-import-name.md) | Distribution and Import Name | Accepted |
 | [0006](0006-automated-releases.md) | Automated Releases | Accepted |
 | [0007](0007-zensical-for-documentation.md) | Zensical for Documentation | Accepted |
+| [0008](0008-assertion-api-design.md) | Assertion API Design | Proposed |
 
 ## Lifecycle
 
