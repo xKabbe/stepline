@@ -1,1 +1,1 @@
-"""Fluent, type-aware assertions built around assert_that()."""
+"""Typed, fluent assertions with `assert_that` and one assertion class per value type."""
