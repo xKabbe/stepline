@@ -22,8 +22,8 @@ class Failure:
     Attributes:
         check: The check as a readable phrase, e.g. "to be equal to".
         actual: The value that was checked.
-        expected: The expected value, or `NOT_SET` if the check has none. `None` is a valid-expected value, e.g.
-            for `is_none`.
+        expected: The expected value, or `NotSet.NOT_SET` if the check has none. `None` is a valid expected value, e.g.
+            for `is_none()`.
         description: The description given to `assert_that`, or `None`.
     """
 
