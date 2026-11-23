@@ -1,4 +1,4 @@
-"""The errors that stepline raises when a check fails."""
+"""The error raised when a single check fails."""
 
 from stepline._core.failure import Failure, NotSet
 
@@ -23,7 +23,7 @@ class AssertionFailedError(AssertionError):
 
     def __str__(self) -> str:
         """
-        String representation of the failure.
+        Build the failure message from the failure.
 
         Returns:
             The string representation of the failure.
