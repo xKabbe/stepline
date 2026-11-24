@@ -1,7 +1,6 @@
 """Tests for the assertions for `bytes` and `bytearray` values."""
 
-from stepline.assertions._object_assert import ObjectAssert
-from stepline.assertions._types._bytes_assert import BytesAssert
+from stepline.assertions import BytesAssert, ObjectAssert
 
 
 def test_assert_class_is_an_object_assert() -> None:

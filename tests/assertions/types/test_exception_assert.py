@@ -1,7 +1,6 @@
 """Tests for the assertions for exceptions."""
 
-from stepline.assertions._object_assert import ObjectAssert
-from stepline.assertions._types._exception_assert import ExceptionAssert
+from stepline.assertions import ExceptionAssert, ObjectAssert
 
 
 def test_assert_class_is_an_object_assert() -> None:

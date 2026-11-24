@@ -1,7 +1,6 @@
 """Tests for the assertions for collections."""
 
-from stepline.assertions._object_assert import ObjectAssert
-from stepline.assertions._types._collection_assert import CollectionAssert
+from stepline.assertions import CollectionAssert, ObjectAssert
 
 
 def test_assert_class_is_an_object_assert() -> None:

@@ -1,7 +1,6 @@
 """Tests for the assertions for numbers."""
 
-from stepline.assertions._object_assert import ObjectAssert
-from stepline.assertions._types._number_assert import NumberAssert
+from stepline.assertions import NumberAssert, ObjectAssert
 
 
 def test_assert_class_is_an_object_assert() -> None:

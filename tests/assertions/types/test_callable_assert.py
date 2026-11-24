@@ -1,7 +1,6 @@
 """Tests for the assertions for callables."""
 
-from stepline.assertions._object_assert import ObjectAssert
-from stepline.assertions._types._callable_assert import CallableAssert
+from stepline.assertions import CallableAssert, ObjectAssert
 
 
 def test_assert_class_is_an_object_assert() -> None:

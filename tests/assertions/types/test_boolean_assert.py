@@ -1,7 +1,6 @@
 """Tests for the assertions for `bool` values."""
 
-from stepline.assertions._object_assert import ObjectAssert
-from stepline.assertions._types._boolean_assert import BooleanAssert
+from stepline.assertions import BooleanAssert, ObjectAssert
 
 
 def test_assert_class_is_an_object_assert() -> None:

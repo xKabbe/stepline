@@ -1,7 +1,6 @@
 """Tests for the assertions for dates and datetimes."""
 
-from stepline.assertions._object_assert import ObjectAssert
-from stepline.assertions._types._date_assert import DateAssert
+from stepline.assertions import DateAssert, ObjectAssert
 
 
 def test_assert_class_is_an_object_assert() -> None:

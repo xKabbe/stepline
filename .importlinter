@@ -9,6 +9,7 @@ layers =
     stepline._cli : stepline._pytest
     stepline._render
     stepline.assertions : stepline.steps : stepline.metadata : stepline.log : stepline.performance
+    stepline.errors
     stepline._core
 
 [importlinter:contract:core-is-pure]

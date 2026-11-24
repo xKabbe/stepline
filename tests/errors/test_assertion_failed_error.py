@@ -4,8 +4,8 @@ import pickle
 
 import pytest
 
-from stepline._core.errors.assertion_failed_error import AssertionFailedError
 from stepline._core.failure import Failure
+from stepline.errors import AssertionFailedError
 
 FAILURE = Failure(check="to be equal to", actual=404, expected=200, description="status code")
 

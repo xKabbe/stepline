@@ -9,18 +9,20 @@ from typing import Any, assert_type
 
 import pytest
 
-from stepline.assertions._assert_that import assert_that
-from stepline.assertions._object_assert import ObjectAssert
-from stepline.assertions._types._boolean_assert import BooleanAssert
-from stepline.assertions._types._bytes_assert import BytesAssert
-from stepline.assertions._types._callable_assert import CallableAssert
-from stepline.assertions._types._collection_assert import CollectionAssert
-from stepline.assertions._types._date_assert import DateAssert
-from stepline.assertions._types._exception_assert import ExceptionAssert
-from stepline.assertions._types._mapping_assert import MappingAssert
-from stepline.assertions._types._number_assert import NumberAssert
-from stepline.assertions._types._path_assert import PathAssert
-from stepline.assertions._types._string_assert import StringAssert
+from stepline import assert_that
+from stepline.assertions import (
+    BooleanAssert,
+    BytesAssert,
+    CallableAssert,
+    CollectionAssert,
+    DateAssert,
+    ExceptionAssert,
+    MappingAssert,
+    NumberAssert,
+    ObjectAssert,
+    PathAssert,
+    StringAssert,
+)
 
 
 @pytest.mark.parametrize(

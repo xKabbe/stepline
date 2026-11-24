@@ -1,6 +1,6 @@
 """Tests for the generic assertions that work for every value."""
 
-from stepline.assertions._object_assert import ObjectAssert
+from stepline.assertions import ObjectAssert
 
 
 def test_assertion_keeps_actual_value_and_description() -> None:

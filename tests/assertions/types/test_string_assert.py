@@ -1,7 +1,6 @@
 """Tests for the assertions for strings."""
 
-from stepline.assertions._object_assert import ObjectAssert
-from stepline.assertions._types._string_assert import StringAssert
+from stepline.assertions import ObjectAssert, StringAssert
 
 
 def test_assert_class_is_an_object_assert() -> None:
