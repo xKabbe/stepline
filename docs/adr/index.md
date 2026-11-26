@@ -25,7 +25,7 @@ that made it necessary, what was decided, and what follows from it.
 | [0005](0005-distribution-and-import-name.md) | Distribution and Import Name | Accepted |
 | [0006](0006-automated-releases.md) | Automated Releases | Accepted |
 | [0007](0007-zensical-for-documentation.md) | Zensical for Documentation | Accepted |
-| [0008](0008-assertion-api-design.md) | Assertion API Design | Proposed |
+| [0008](0008-assertion-api-design.md) | Assertion API Design | Accepted |
 
 ## Lifecycle
 
@@ -45,7 +45,7 @@ stateDiagram-v2
 
 ## Writing a new ADR
 
-1. Copy the template [template](template.md) into a new file `docs/adr/NNNN-short-title.md`, with the next free
+1. Copy the [template](template.md) into a new file `docs/adr/NNNN-short-title.md`, with the next free
    four-digit number, for example `0008-step-semantics.md`.
 2. Fill in the sections and set the status to *Proposed*.
 3. Add the record to the table above and to the `nav` in `zensical.toml`.
