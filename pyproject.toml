@@ -1,6 +1,6 @@
 [project]
 name = "pytest-stepline"
-version = "0.0.2"
+version = "0.1.0"
 description = "Structured pytest tests with steps, typed assertions, and test documentation."
 license = "MIT"
 license-files = ["LICENSE"]

@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.0](https://github.com/xKabbe/stepline/compare/v0.0.2...v0.1.0) (2026-11-26)
+
+
+### Features
+
+* **assertions:** add failure data class for failing test descriptions ([50885f2](https://github.com/xKabbe/stepline/commit/50885f2cdbbffc8218ee0f2a960aedb2914cd8fe))
+* **assertions:** assert that entry point and assertion skeleton ([483954a](https://github.com/xKabbe/stepline/commit/483954acf604bd1856faceec71f9445c80fc53c7))
+
+
+### Documentation
+
+* **assertions:** add pending adr 0008 ([d9b9e79](https://github.com/xKabbe/stepline/commit/d9b9e799500a3fca6cf3239acc0ec29632d06524))
+
 ## [0.0.2](https://github.com/xKabbe/stepline/compare/v0.0.1...v0.0.2) (2026-11-21)
 
 
