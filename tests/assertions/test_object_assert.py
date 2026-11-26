@@ -71,25 +71,6 @@ INSTANCES_OF_OTHER_TYPES = [
 ]
 
 
-def test_assertion_keeps_actual_value_and_description() -> None:
-    """The assertion keeps the checked value and the description for its checks."""
-    actual = 404
-    description = "status code"
-    assert_instance = ObjectAssert(actual=actual, description=description)
-
-    assert assert_instance._actual == actual  # pyright: ignore[reportPrivateUsage]
-    assert assert_instance._description == description  # pyright: ignore[reportPrivateUsage]
-
-
-def test_assertion_has_no_description_by_default() -> None:
-    """The description is `None` if none is given."""
-    actual = 404
-    assert_instance = ObjectAssert(actual=actual)
-
-    assert assert_instance._actual == actual  # pyright: ignore[reportPrivateUsage]
-    assert assert_instance._description is None  # pyright: ignore[reportPrivateUsage]
-
-
 @pytest.mark.parametrize(("actual", "expected"), EQUAL_VALUES)
 def test_assertion_is_equal_to_passes_for_equal_values(actual: object, expected: object) -> None:
     """
@@ -314,14 +295,39 @@ def test_assertion_is_not_instance_of_fails_for_instances_of_the_type(
     assert error_info.value.failure.expected is expected_type
 
 
-# TODO: Add tests
-# def test_assertion_returns_itself_for_chaining() -> None:
-#     pass
+def test_assertion_returns_itself_for_chaining() -> None:
+    """Every check returns the assertion itself, so that checks can be chained."""
+    status_code = 404
+    assertion = ObjectAssert(status_code)
+    none_assertion = ObjectAssert(None)
+
+    assert assertion.is_equal_to(status_code) is assertion
+    assert assertion.is_not_equal_to(200) is assertion
+    assert assertion.is_same_as(status_code) is assertion
+    assert assertion.is_not_same_as(object()) is assertion
+    assert none_assertion.is_none() is none_assertion
+    assert assertion.is_not_none() is assertion
+    assert assertion.is_instance_of(int) is assertion
+    assert assertion.is_not_instance_of(str) is assertion
+    assert assertion.is_not_none().is_equal_to(status_code).is_instance_of(int) is assertion
 
 
-# def test_assertion_failure_holds_the_actual_value_and_description() -> None:
-#     pass
+def test_assertion_failure_holds_the_actual_value_and_description() -> None:
+    """A failed check passes the checked value and the description to the failure."""
+    status_code = 404
+    description = "status code"
+    with pytest.raises(AssertionFailedError) as error_info:
+        ObjectAssert(status_code, description).is_equal_to(200)
+
+    assert error_info.value.failure.actual == status_code
+    assert error_info.value.failure.description == description
 
 
-# def test_assertion_failure_has_no_description_by_default() -> None:
-#     pass
+def test_assertion_failure_has_no_description_by_default() -> None:
+    """A failed check without a description gives `None` as description to the failure."""
+    status_code = 404
+    with pytest.raises(AssertionFailedError) as error_info:
+        ObjectAssert(status_code).is_equal_to(200)
+
+    assert error_info.value.failure.actual == status_code
+    assert error_info.value.failure.description is None
