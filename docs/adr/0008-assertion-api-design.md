@@ -1,6 +1,6 @@
 # 0008: Assertion API Design
 
-!!! note "Status: Proposed · 2026-11-22"
+!!! note "Status: Accepted · 2026-11-26"
 
 ## Context
 
@@ -10,8 +10,8 @@ stepline is built with:
 
 - pyright runs in strict mode, and editors should only suggest methods that make sense for
   the value under test.
-- Following [ADR 0004](0004-layered-architecture-with-import-linter.md), assertions must not
-  depend on pytest, rich or Typer, so they work in any Python code.
+- Following [ADR 0004](0004-layered-architecture-with-import-linter.md), assertions must not depend on pytest, rich or Typer, so they
+  work in any Python code.
 - Plain `assert` statements give little context when they fail. stepline's assertions should
   say what was checked, what was expected and what was found.
 
