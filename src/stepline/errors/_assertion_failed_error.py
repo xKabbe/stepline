@@ -17,6 +17,8 @@ class AssertionFailedError(AssertionError):
         failure: The failure that describes the failed check.
     """
 
+    __module__ = "stepline.errors"
+
     def __init__(self, failure: Failure) -> None:
         super().__init__(failure)
         self.failure = failure
