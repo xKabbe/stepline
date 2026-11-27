@@ -57,6 +57,8 @@ class ObjectAssert[T]:
         Raises:
             AssertionFailedError: If the value is not equal to the expected value.
         """
+        __tracebackhide__ = True
+
         if self._actual != expected:
             self._fail(check="to be equal to", expected=expected)
         return self
@@ -79,6 +81,8 @@ class ObjectAssert[T]:
         Raises:
             AssertionFailedError: If the value is equal to the given value.
         """
+        __tracebackhide__ = True
+
         if self._actual == expected:
             self._fail(check="not to be equal to", expected=expected)
         return self
@@ -101,6 +105,8 @@ class ObjectAssert[T]:
         Raises:
             AssertionFailedError: If the value is a different object.
         """
+        __tracebackhide__ = True
+
         if self._actual is not expected:
             self._fail(check="to be the same object as", expected=expected)
         return self
@@ -124,6 +130,8 @@ class ObjectAssert[T]:
         Raises:
             AssertionFailedError: If the value is the same object.
         """
+        __tracebackhide__ = True
+
         if self._actual is expected:
             self._fail(check="not to be the same object as", expected=expected)
         return self
@@ -143,6 +151,8 @@ class ObjectAssert[T]:
         Raises:
             AssertionFailedError: If the value is not `None`.
         """
+        __tracebackhide__ = True
+
         if self._actual is not None:
             self._fail(check="to be", expected=None)
         return self
@@ -162,6 +172,8 @@ class ObjectAssert[T]:
         Raises:
             AssertionFailedError: If the value is `None`.
         """
+        __tracebackhide__ = True
+
         if self._actual is None:
             self._fail(check="not to be", expected=None)
         return self
@@ -185,6 +197,8 @@ class ObjectAssert[T]:
         Raises:
             AssertionFailedError: If the value is not an instance of the expected type.
         """
+        __tracebackhide__ = True
+
         if not isinstance(self._actual, expected_type):
             self._fail(check="to be an instance of", expected=expected_type)
         return self
@@ -207,6 +221,8 @@ class ObjectAssert[T]:
         Raises:
             AssertionFailedError: If the value is an instance of the given type.
         """
+        __tracebackhide__ = True
+
         if isinstance(self._actual, expected_type):
             self._fail(check="not to be an instance of", expected=expected_type)
         return self
@@ -223,6 +239,8 @@ class ObjectAssert[T]:
         Raises:
             AssertionFailedError: Always, with the failure that describes the failed check.
         """
+        __tracebackhide__ = True
+
         raise AssertionFailedError(
             failure=Failure(check=check, actual=self._actual, expected=expected, description=self._description)
         )
