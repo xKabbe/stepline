@@ -34,10 +34,11 @@ def format_failure(failure: Failure) -> str:
     found = failure.actual if failure.found is NotSet.NOT_SET else failure.found
     expected_label = "expected not" if failure.negated else "expected"
     actual_label = "actual"
-    width = max(len(expected_label), len(actual_label)) + _LABEL_GAP
+    width = max(len(expected_label), len(actual_label))
+    gap = " " * _LABEL_GAP
 
     return (
         f"{headline} {failure.expected!r}\n"
-        f"├─ {expected_label:<{width}} {failure.expected!r}\n"
-        f"╰─ {actual_label:<{width}} {found!r}"
+        f"├─ {expected_label:<{width}}{gap}{failure.expected!r}\n"
+        f"╰─ {actual_label:<{width}}{gap}{found!r}"
     )
