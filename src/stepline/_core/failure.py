@@ -21,13 +21,20 @@ class Failure:
 
     Attributes:
         check: The check as a readable phrase, e.g. "to be equal to".
-        actual: The value that was checked.
+        actual: The value that was checked, as given to `assert_that`.
         expected: The expected value, or `NotSet.NOT_SET` if the check has none. `None` is a valid expected value, e.g.
             for `is_none()`.
+        found: The part of the value that the check compared with the expected value, e.g. its type for
+            `is_instance_of()` or its length for `has_length()`. `NotSet.NOT_SET` if the check compared the
+            value itself.
+        negated: Whether the check is negated, e.g. for `is_not_equal_to()`. The expected value is then the value that
+            must not be found.
         description: The description given to `assert_that`, or `None`.
     """
 
     check: str
     actual: object
     expected: object = NotSet.NOT_SET
+    found: object = NotSet.NOT_SET
+    negated: bool = False
     description: str | None = None

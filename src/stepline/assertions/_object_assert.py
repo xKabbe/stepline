@@ -84,7 +84,7 @@ class ObjectAssert[T]:
         __tracebackhide__ = True
 
         if self._actual == expected:
-            self._fail(check="not to be equal to", expected=expected)
+            self._fail(check="not to be equal to", expected=expected, negated=True)
         return self
 
     def is_same_as(self, expected: object) -> Self:
@@ -133,7 +133,7 @@ class ObjectAssert[T]:
         __tracebackhide__ = True
 
         if self._actual is expected:
-            self._fail(check="not to be the same object as", expected=expected)
+            self._fail(check="not to be the same object as", expected=expected, negated=True)
         return self
 
     def is_none(self) -> Self:
@@ -175,7 +175,7 @@ class ObjectAssert[T]:
         __tracebackhide__ = True
 
         if self._actual is None:
-            self._fail(check="not to be", expected=None)
+            self._fail(check="not to be", expected=None, negated=True)
         return self
 
     def is_instance_of(self, expected_type: type[object]) -> Self:
@@ -200,7 +200,7 @@ class ObjectAssert[T]:
         __tracebackhide__ = True
 
         if not isinstance(self._actual, expected_type):
-            self._fail(check="to be an instance of", expected=expected_type)
+            self._fail(check="to be an instance of", expected=expected_type, found=type(self._actual))
         return self
 
     def is_not_instance_of(self, expected_type: type[object]) -> Self:
@@ -224,10 +224,12 @@ class ObjectAssert[T]:
         __tracebackhide__ = True
 
         if isinstance(self._actual, expected_type):
-            self._fail(check="not to be an instance of", expected=expected_type)
+            self._fail(check="not to be an instance of", expected=expected_type, found=type(self._actual), negated=True)
         return self
 
-    def _fail(self, check: str, expected: object = NotSet.NOT_SET) -> NoReturn:
+    def _fail(
+        self, check: str, expected: object = NotSet.NOT_SET, found: object = NotSet.NOT_SET, negated: bool = False
+    ) -> NoReturn:
         """
         Raise an `AssertionFailedError` with a failure for this assertion's value and description.
 
@@ -235,6 +237,11 @@ class ObjectAssert[T]:
             check: The check as a readable phrase, e.g. "to be equal to".
             expected: The expected value, or `NotSet.NOT_SET` if the check has none. `None` is a valid expected
                 value, e.g. for `is_none()`.
+            found: The part of the value that the check compared with the expected value, e.g. its type for
+                `is_instance_of()` or its length for `has_length()`. `NotSet.NOT_SET` if the check compared the
+                value itself.
+            negated: Whether the check is negated, e.g. for `is_not_equal_to()`. The expected value is then the value
+                that must not be found.
 
         Raises:
             AssertionFailedError: Always, with the failure that describes the failed check.
@@ -242,5 +249,12 @@ class ObjectAssert[T]:
         __tracebackhide__ = True
 
         raise AssertionFailedError(
-            failure=Failure(check=check, actual=self._actual, expected=expected, description=self._description)
+            failure=Failure(
+                check=check,
+                actual=self._actual,
+                expected=expected,
+                found=found,
+                negated=negated,
+                description=self._description,
+            )
         )
