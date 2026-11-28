@@ -97,6 +97,7 @@ def test_assertion_is_equal_to_fails_for_different_values(actual: object, expect
 
     assert error_info.value.failure.check == "to be equal to"
     assert error_info.value.failure.expected == expected
+    assert not error_info.value.failure.negated
 
 
 @pytest.mark.parametrize(("actual", "expected"), DIFFERENT_VALUES)
@@ -125,6 +126,7 @@ def test_assertion_is_not_equal_to_fails_for_equal_values(actual: object, expect
 
     assert error_info.value.failure.check == "not to be equal to"
     assert error_info.value.failure.expected == expected
+    assert error_info.value.failure.negated
 
 
 @pytest.mark.parametrize("actual", SAME_OBJECTS)
@@ -152,6 +154,7 @@ def test_assertion_is_same_as_fails_for_a_different_object(actual: object, expec
 
     assert error_info.value.failure.check == "to be the same object as"
     assert error_info.value.failure.expected is expected
+    assert not error_info.value.failure.negated
 
 
 @pytest.mark.parametrize(("actual", "expected"), SEPARATE_OBJECTS)
@@ -179,6 +182,7 @@ def test_assertion_is_not_same_as_fails_for_the_same_object(actual: object) -> N
 
     assert error_info.value.failure.check == "not to be the same object as"
     assert error_info.value.failure.expected is actual
+    assert error_info.value.failure.negated
 
 
 @pytest.mark.parametrize("actual", NONE_VALUES)
@@ -205,6 +209,7 @@ def test_assertion_is_none_fails_for_any_other_value(actual: object) -> None:
 
     assert error_info.value.failure.check == "to be"
     assert error_info.value.failure.expected is None
+    assert not error_info.value.failure.negated
 
 
 @pytest.mark.parametrize("actual", OTHER_VALUES)
@@ -231,6 +236,7 @@ def test_assertion_is_not_none_fails_for_none(actual: object) -> None:
 
     assert error_info.value.failure.check == "not to be"
     assert error_info.value.failure.expected is None
+    assert error_info.value.failure.negated
 
 
 @pytest.mark.parametrize(("actual", "expected_type"), INSTANCES_OF_THE_TYPE)
@@ -261,6 +267,8 @@ def test_assertion_is_instance_of_fails_for_instances_of_other_types(
 
     assert error_info.value.failure.check == "to be an instance of"
     assert error_info.value.failure.expected is expected_type
+    assert error_info.value.failure.found is type(actual)
+    assert not error_info.value.failure.negated
 
 
 @pytest.mark.parametrize(("actual", "expected_type"), INSTANCES_OF_OTHER_TYPES)
@@ -293,6 +301,8 @@ def test_assertion_is_not_instance_of_fails_for_instances_of_the_type(
 
     assert error_info.value.failure.check == "not to be an instance of"
     assert error_info.value.failure.expected is expected_type
+    assert error_info.value.failure.found is type(actual)
+    assert error_info.value.failure.negated
 
 
 def test_assertion_returns_itself_for_chaining() -> None:
@@ -321,6 +331,7 @@ def test_assertion_failure_holds_the_actual_value_and_description() -> None:
 
     assert error_info.value.failure.actual == status_code
     assert error_info.value.failure.description == description
+    assert not error_info.value.failure.negated
 
 
 def test_assertion_failure_has_no_description_by_default() -> None:
@@ -331,3 +342,4 @@ def test_assertion_failure_has_no_description_by_default() -> None:
 
     assert error_info.value.failure.actual == status_code
     assert error_info.value.failure.description is None
+    assert not error_info.value.failure.negated
