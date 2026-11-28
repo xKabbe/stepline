@@ -1,6 +1,7 @@
 """The error raised when a single check fails."""
 
-from stepline._core.failure import Failure, NotSet
+from stepline._core.failure import Failure
+from stepline._core.failure_message import format_failure
 
 
 class AssertionFailedError(AssertionError):
@@ -30,5 +31,4 @@ class AssertionFailedError(AssertionError):
         Returns:
             The string representation of the failure.
         """
-        message = f"expected {self.failure.actual!r} {self.failure.check}"
-        return message if self.failure.expected is NotSet.NOT_SET else f"{message} {self.failure.expected!r}"
+        return format_failure(failure=self.failure)

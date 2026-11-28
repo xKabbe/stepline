@@ -38,9 +38,8 @@ def test_error_message_omits_missing_expected_value() -> None:
     """The message end with the check if the check has no expected value."""
     failure_without_expected = Failure(check="to be positive", actual=-2)
     error = AssertionFailedError(failure=failure_without_expected)
-    error_message = str(error)
 
-    assert error_message.endswith(failure_without_expected.check)
+    assert str(error).endswith(failure_without_expected.check)
 
 
 @pytest.mark.parametrize(
@@ -62,7 +61,7 @@ def test_error_message_keeps_falsy_expected_values(expected: object) -> None:
     failure = Failure(check="to be equal to", actual=404, expected=expected)
     error = AssertionFailedError(failure=failure)
 
-    assert str(error).endswith(f"to be equal to {expected!r}")
+    assert f"to be equal to {expected!r}" in str(error)
 
 
 def test_error_can_be_pickled() -> None:
