@@ -29,6 +29,6 @@ class AssertionFailedError(AssertionError):
         Build the failure message from the failure.
 
         Returns:
-            The string representation of the failure.
+            The message built by `format_failure()`, see there for the format.
         """
         return format_failure(failure=self.failure)

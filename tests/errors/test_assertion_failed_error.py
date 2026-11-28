@@ -35,7 +35,7 @@ def test_error_message_contains_check_and_values() -> None:
 
 
 def test_error_message_omits_missing_expected_value() -> None:
-    """The message end with the check if the check has no expected value."""
+    """The message ends with the check if the check has no expected value."""
     failure_without_expected = Failure(check="to be positive", actual=-2)
     error = AssertionFailedError(failure=failure_without_expected)
 
